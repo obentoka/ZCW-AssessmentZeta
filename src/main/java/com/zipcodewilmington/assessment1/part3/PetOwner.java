@@ -59,7 +59,13 @@ public class PetOwner {
      * @return the age of the Pet object whose age field is the lowest amongst all Pets in this class
      */
     public Integer getYoungetPetAge() {
-        return null;
+        Integer youngestAge = Integer.MAX_VALUE;
+        for(Pet i : petList){
+            if(i.age < youngestAge){
+                youngestAge = i.age;
+            }
+        }
+        return youngestAge;
     }
 
 
@@ -69,7 +75,13 @@ public class PetOwner {
      * @return the age of the Pet object whose age field is the highest amongst all Pets in this class
      */
     public Integer getOldestPetAge() {
-        return null;
+        Integer oldestAge = Integer.MIN_VALUE;
+        for(Pet i : petList){
+            if(i.age > oldestAge){
+                oldestAge = i.age;
+            }
+        }
+        return oldestAge;
     }
 
 
@@ -77,14 +89,18 @@ public class PetOwner {
      * @return the sum of ages of Pet objects stored in this class divided by the number of Pet object
      */
     public Float getAveragePetAge() {
-        return null;
+        Float sumAge = 0f;
+        for(Pet i : petList){
+            sumAge += i.age;
+        }
+        return sumAge/petList.length;
     }
 
     /**
      * @return the number of Pet objects stored in this class
      */
     public Integer getNumberOfPets() {
-        return null;
+        return (Integer) petList.length;
     }
 
     /**

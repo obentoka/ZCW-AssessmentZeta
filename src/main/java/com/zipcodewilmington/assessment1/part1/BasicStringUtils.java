@@ -9,7 +9,10 @@ public class BasicStringUtils {
      * @return string with identical content, and the first character capitalized
      */
     public static String camelCase(String str) {
-        return null;
+        StringBuilder returnString = new StringBuilder(str);
+        String capLetter = "" + str.charAt(0);
+        returnString.replace(0,1, capLetter.toUpperCase());
+        return returnString.toString();
     }
 
     /**
@@ -17,7 +20,11 @@ public class BasicStringUtils {
      * @return string with identical contents, in the reverse order
      */
     public static String reverse(String str) {
-        return null;
+        StringBuilder returnString = new StringBuilder();
+        for (int i = str.length()-1; i >= 0 ; i--) {
+            returnString.append(str.charAt(i));
+        }
+        return returnString.toString();
     }
 
     /**
@@ -25,7 +32,9 @@ public class BasicStringUtils {
      * @return string with identical contents, in reverse order, with first character capitalized
      */
     public static String reverseThenCamelCase(String str) {
-        return null;
+        String returnString = reverse(str);
+        String strCamelCase = camelCase(returnString);
+        return strCamelCase.toString();
     }
 
 
@@ -34,7 +43,10 @@ public class BasicStringUtils {
      * @return string with identical contents excluding first and last character
      */
     public static String removeFirstAndLastCharacter(String str) {
-        return null;
+        StringBuilder returnString = new StringBuilder(str);
+        returnString.deleteCharAt(0);
+        returnString.deleteCharAt(returnString.length()-1);
+        return returnString.toString();
     }
 
     /**
@@ -42,6 +54,16 @@ public class BasicStringUtils {
      * @return string with identical characters, each with opposite casing
      */
     public static String invertCasing(String str) {
-        return null;
+        int unicode;
+        StringBuilder returnString = new StringBuilder();
+        for (int i = 0; i < str.length(); i++) {
+            unicode = str.codePointAt(i);
+            if(unicode > 90){
+                returnString.append(str.toUpperCase().charAt(i));
+            }else {
+                returnString.append(str.toLowerCase().charAt(i));
+            }
+        }
+        return returnString.toString();
     }
 }

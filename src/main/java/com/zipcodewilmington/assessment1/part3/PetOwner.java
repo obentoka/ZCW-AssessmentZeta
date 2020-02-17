@@ -52,7 +52,7 @@ public class PetOwner {
 //        if(this.getName().equals(pet.getOwner().getName())){
 //            return true;
 //        }
-        return false;
+        return null;
     }
 
     /**

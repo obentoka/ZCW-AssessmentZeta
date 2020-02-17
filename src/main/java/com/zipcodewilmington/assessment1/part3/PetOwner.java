@@ -1,27 +1,47 @@
 package com.zipcodewilmington.assessment1.part3;
 
+import java.util.ArrayList;
+
 /**
  * Created by leon on 2/16/18.
  */
 public class PetOwner {
+
+    String ownerName;
+    static Pet[] petList;
     /**
      * @param name name of the owner of the Pet
      * @param pets array of Pet object
      */
     public PetOwner(String name, Pet... pets) {
+        this.ownerName = name;
+        this.petList = pets;
     }
 
     /**
      * @param pet pet to be added to the composite collection of Pets
      */
     public void addPet(Pet pet) {
+        if(petList == null){
+            petList = new Pet[1];
+            petList[0] = pet;
+        }else {
+            int oldSize = this.petList.length;
+            Pet[] newPetList = new Pet[oldSize + 1];
+            newPetList = this.petList.clone();
+            newPetList[newPetList.length - 1] = pet;
+        }
     }
 
     /**
      * @param pet pet to be removed from the composite collection Pets
      */
     public void removePet(Pet pet) {
-
+        for (int i = 0; i < petList.length; i++) {
+            if(petList[i].equals(pet)){
+                petList[i] = null;
+            }
+        }
     }
 
     /**
@@ -29,7 +49,10 @@ public class PetOwner {
      * @return true if I own this pet
      */
     public Boolean isOwnerOf(Pet pet) {
-        return null;
+//        if(this.getName().equals(pet.getOwner().getName())){
+//            return true;
+//        }
+        return false;
     }
 
     /**
@@ -68,13 +91,13 @@ public class PetOwner {
      * @return the name property of the Pet
      */
     public String getName() {
-        return null;
+        return this.ownerName;
     }
 
     /**
      * @return array representation of animals owned by this PetOwner
      */
     public Pet[] getPets() {
-        return null;
+        return this.petList;
     }
 }

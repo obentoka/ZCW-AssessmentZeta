@@ -1,6 +1,7 @@
 package com.zipcodewilmington.assessment1.part3;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by leon on 2/16/18.
@@ -8,40 +9,35 @@ import java.util.ArrayList;
 public class PetOwner {
 
     String ownerName;
-    static Pet[] petList;
+    ArrayList<Pet> petList = new ArrayList<Pet>();
     /**
      * @param name name of the owner of the Pet
      * @param pets array of Pet object
      */
     public PetOwner(String name, Pet... pets) {
-        this.ownerName = name;
-        this.petList = pets;
+        if(name != null)
+            this.ownerName = name;
+        if(pets != null) {
+            petList.addAll(Arrays.asList(pets));
+            for(Pet i : petList){
+                i.setOwner(this);
+            }
+        }
     }
 
     /**
      * @param pet pet to be added to the composite collection of Pets
      */
     public void addPet(Pet pet) {
-        if(petList == null){
-            petList = new Pet[1];
-            petList[0] = pet;
-        }else {
-            int oldSize = this.petList.length;
-            Pet[] newPetList = new Pet[oldSize + 1];
-            newPetList = this.petList.clone();
-            newPetList[newPetList.length - 1] = pet;
-        }
+        petList.add(pet);
+        pet.setOwner(this);
     }
 
     /**
      * @param pet pet to be removed from the composite collection Pets
      */
     public void removePet(Pet pet) {
-        for (int i = 0; i < petList.length; i++) {
-            if(petList[i].equals(pet)){
-                petList[i] = null;
-            }
-        }
+        petList.remove(pet);
     }
 
     /**
@@ -49,10 +45,14 @@ public class PetOwner {
      * @return true if I own this pet
      */
     public Boolean isOwnerOf(Pet pet) {
-//        if(this.getName().equals(pet.getOwner().getName())){
-//            return true;
-//        }
-        return null;
+        if(petList != null){
+            for(Pet i : petList){
+                if(i.equals(pet)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -93,14 +93,14 @@ public class PetOwner {
         for(Pet i : petList){
             sumAge += i.age;
         }
-        return sumAge/petList.length;
+        return sumAge/petList.size();
     }
 
     /**
      * @return the number of Pet objects stored in this class
      */
     public Integer getNumberOfPets() {
-        return (Integer) petList.length;
+        return petList.size();
     }
 
     /**
@@ -114,6 +114,12 @@ public class PetOwner {
      * @return array representation of animals owned by this PetOwner
      */
     public Pet[] getPets() {
-        return this.petList;
+        if(petList.size() == 0){
+            petList.add(null);
+            return petList.toArray(new Pet[1]);
+        }else {
+            Pet[] returnPets = petList.toArray(new Pet[petList.size()]);
+            return returnPets;
+        }
     }
 }

@@ -28,19 +28,4 @@ public class Palindrome {
             }
         }
     }
-
-//    public static void main(String[] args){
-//        Palindrome palindrome = new Palindrome();
-//        Integer expected = palindrome.countPalindromes("aaa");
-//        Integer actual = 6;
-//        System.out.println(expected);
-//        palindrome.count = 0;
-//        expected = palindrome.countPalindromes("abccba");
-//        Integer actual2 = 9;
-//        System.out.println(expected);
-//        palindrome.count = 0;
-//        expected = palindrome.countPalindromes("daata");
-//        Integer actual3 = 7;
-//        System.out.println(expected);
-//    }
 }

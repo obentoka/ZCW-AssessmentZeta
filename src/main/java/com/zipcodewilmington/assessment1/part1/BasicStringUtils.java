@@ -20,11 +20,8 @@ public class BasicStringUtils {
      * @return string with identical contents, in the reverse order
      */
     public static String reverse(String str) {
-        StringBuilder returnString = new StringBuilder();
-        for (int i = str.length()-1; i >= 0 ; i--) {
-            returnString.append(str.charAt(i));
-        }
-        return returnString.toString();
+        StringBuilder returnString = new StringBuilder(str);
+        return returnString.reverse().toString();
     }
 
     /**
@@ -32,9 +29,7 @@ public class BasicStringUtils {
      * @return string with identical contents, in reverse order, with first character capitalized
      */
     public static String reverseThenCamelCase(String str) {
-        String returnString = reverse(str);
-        String strCamelCase = camelCase(returnString);
-        return strCamelCase.toString();
+        return camelCase(reverse(str));
     }
 
 
@@ -43,10 +38,7 @@ public class BasicStringUtils {
      * @return string with identical contents excluding first and last character
      */
     public static String removeFirstAndLastCharacter(String str) {
-        StringBuilder returnString = new StringBuilder(str);
-        returnString.deleteCharAt(0);
-        returnString.deleteCharAt(returnString.length()-1);
-        return returnString.toString();
+        return str.substring(1,str.length()-1);
     }
 
     /**

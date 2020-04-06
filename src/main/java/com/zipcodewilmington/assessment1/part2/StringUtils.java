@@ -21,8 +21,7 @@ public class StringUtils {
      * given a string containing words delimited by spaces, representative of a sentence, return the first word of the sentence
      */
     public static String getFirstWord(String sentence) {
-        String[] splitSentence = sentence.split(" ");
-        return splitSentence[0];
+        return getWords(sentence)[0];
     }
 
     /**
@@ -31,9 +30,7 @@ public class StringUtils {
      * given a string containing words delimited by spaces, representative of a sentence, return the first word with identical contents in reverse order
      */
     public static String reverseFirstWord(String sentence) {
-        String firstWord = getFirstWord(sentence);
-        String returnWord = BasicStringUtils.reverse(firstWord);
-        return returnWord;
+        return BasicStringUtils.reverse(getFirstWord(sentence));
     }
 
     /**
@@ -42,10 +39,7 @@ public class StringUtils {
      * given a string containing words delimited by spaces, representative of a sentence, return the first word with identical contents in reverse order with the first character capitalized
      */
     public static String reverseFirstWordThenCamelCase(String sentence) {
-        String firstWord = getFirstWord(sentence);
-        String reverseWord = BasicStringUtils.reverse(firstWord);
-        String returnWord = BasicStringUtils.camelCase(reverseWord);
-        return returnWord;
+        return BasicStringUtils.camelCase(BasicStringUtils.reverse(getFirstWord(sentence)));
     }
 
 
@@ -56,9 +50,7 @@ public class StringUtils {
      * given a string and index, return an identical string excluding the character at the specified index
      */
     public static String removeCharacterAtIndex(String str, int index) {
-        StringBuilder returnString = new StringBuilder(str);
-        returnString.replace(index, index+1, "");
-        return returnString.toString();
+        return str.substring(0,index) + str.substring(index+1);
     }
 
 }

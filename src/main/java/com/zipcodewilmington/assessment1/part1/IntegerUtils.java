@@ -36,8 +36,7 @@ public class IntegerUtils {
      */
     public static Integer reverseDigits(Integer val) {
         StringBuilder valString = new StringBuilder(val.toString());
-        valString = valString.reverse();
-        Integer reverseIneger = Integer.parseInt(valString.toString());
-        return reverseIneger;
+        valString.reverse();
+        return Integer.parseInt(valString.toString());
     }
 }

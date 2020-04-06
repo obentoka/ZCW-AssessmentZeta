@@ -150,6 +150,7 @@ fabric.properties
 .classpath
 .settings
 
+.travis.yml
 
 #maven build target
 target/
